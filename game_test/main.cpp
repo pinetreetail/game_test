@@ -4,6 +4,9 @@
 
 #include "SceneManager.h"
 
+
+
+
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -19,8 +22,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;			// エラーが起きたら直ちに終了
 	}
 
+
+
+
+
+
+
 	// ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
+
+
+
 
 	// 最初のシーンの初期化
 	SceneManager scene;
@@ -32,8 +44,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		// 画面のクリア
 		ClearDrawScreen();
 
+
+
 		scene.update();
 		scene.draw();
+
+
+
 
 		//裏画面を表画面を入れ替える
 		ScreenFlip();
