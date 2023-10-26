@@ -2,6 +2,7 @@
 
 #include "SceneMain.h"
 #include "SceneTitle.h"
+
 #include "Pad.h"
 
 SceneMain::SceneMain()
@@ -14,7 +15,7 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-
+	player.init();
 }
 
 SceneBase* SceneMain::update()
@@ -27,10 +28,17 @@ SceneBase* SceneMain::update()
 		return (new SceneTitle);
 	}
 
+	player.update();
+
+
+
+
 	return this;
 }
 
 void SceneMain::draw()
 {
 	DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
+
+	player.draw();
 }

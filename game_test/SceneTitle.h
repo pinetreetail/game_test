@@ -20,5 +20,4 @@ private:
 
 	bool m_isEnd;
 
-	int GrHandle[2][5];
 };
