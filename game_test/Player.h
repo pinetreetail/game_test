@@ -16,7 +16,9 @@ public:
 	
 private:
 
-	int GrHandle[10];
+	int PlayerImage1[5];
+	int PlayerImage2[5];
+	int stage;
 
 	float X;
 	float Y;

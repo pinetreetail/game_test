@@ -1,7 +1,9 @@
 #pragma once
 #include "SceneBase.h"
-
 #include "Player.h"
+#include "Shot.h"
+
+
 
 class SceneMain : public SceneBase
 {
@@ -12,14 +14,15 @@ public:
 
 
 	virtual void init() override;
-	virtual void end() override {}
+	virtual void end() override;
 
 	virtual SceneBase* update() override;
 	virtual void draw() override;
 private:
 
-
+	static constexpr int ShotMax = 50;
 
 	Player player;
+	Shot shot[ShotMax];
 
 };

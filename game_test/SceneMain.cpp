@@ -3,6 +3,7 @@
 #include "SceneMain.h"
 #include "SceneTitle.h"
 
+
 #include "Pad.h"
 
 SceneMain::SceneMain()
@@ -16,6 +17,23 @@ SceneMain::~SceneMain()
 void SceneMain::init()
 {
 	player.init();
+
+
+	for (auto& shot : shot)
+	{
+		shot.init();
+	}
+	
+}
+
+void SceneMain::end()
+{
+	player.end();
+
+	for (auto& shot : shot)
+	{
+		shot.end();
+	}
 }
 
 SceneBase* SceneMain::update()
@@ -30,6 +48,12 @@ SceneBase* SceneMain::update()
 
 	player.update();
 
+	for (auto& shot : shot)
+	{
+		shot.update();
+	}
+	
+
 
 
 
@@ -41,4 +65,9 @@ void SceneMain::draw()
 	DrawString(0, 0, "ÉÅÉCÉìâÊñ ", GetColor(255, 255, 255));
 
 	player.draw();
+	for (auto& shot : shot)
+	{
+		shot.draw();
+	}
+	
 }

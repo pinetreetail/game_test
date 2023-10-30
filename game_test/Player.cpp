@@ -6,11 +6,13 @@
 Player::Player()	:
 	X(250.0f),
 	Y(100.0f),
-	Speed(6.0f)
+	Speed(6.0f),
+	stage(0)
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		GrHandle[i] = 0;
+		PlayerImage1[i] = 0;
+		PlayerImage2[i] = 0;
 	}
 }
 
@@ -20,15 +22,21 @@ Player::~Player()
 
 void Player::init()
 {
-	LoadDivGraph("image/playe/ship.png", 10, 5, 2, 16, 24, GrHandle);
+	LoadDivGraph("image/playe/ship1.png", 5, 5, 1, 16, 24, PlayerImage1);
+	LoadDivGraph("image/playe/ship2.png", 5, 5, 1, 16, 24, PlayerImage2);
+	
+	stage = LoadGraph("image/stage/background.png");
 }
 
 void Player::end()
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		DeleteGraph(GrHandle[i]);
+		DeleteGraph(PlayerImage1[i]);
+		DeleteGraph(PlayerImage2[i]);
 	}
+
+	DeleteGraph(stage);
 }
 
 void Player::update()
@@ -72,5 +80,6 @@ void Player::update()
 
 void Player::draw()
 {
-	DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, 40.0f, 0.0f, GrHandle[2], TRUE);
+	DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
+	DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, 40.0f, 0.0f, PlayerImage1[2], TRUE);
 }
