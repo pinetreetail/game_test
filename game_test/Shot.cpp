@@ -37,7 +37,7 @@ void Shot::update()
 	{
 		Y -= ShotSpeed;
 
-		if (Y < 0)
+		if (Y < 800.0f)
 		{
 			exist = false;
 		}
@@ -51,5 +51,13 @@ void Shot::draw()
 	{
 		DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, 30.0f, 0.0f, ShotImage[2], true);
 	}
+}
+
+void Shot::ShotStart(float x, float y)
+{
+	exist = true;
+
+	X = x;
+	Y = y;
 }
 

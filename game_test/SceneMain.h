@@ -18,6 +18,9 @@ public:
 
 	virtual SceneBase* update() override;
 	virtual void draw() override;
+
+	void createShot(float x,float y);
+
 private:
 
 	static constexpr int ShotMax = 50;

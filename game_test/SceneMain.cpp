@@ -71,3 +71,14 @@ void SceneMain::draw()
 	}
 	
 }
+
+void SceneMain::createShot(float x, float y)
+{
+	for (auto& shot : shot)
+	{
+		if (shot.isExist() == false)
+		{
+			shot.ShotStart(x, y);
+		}
+	}
+}

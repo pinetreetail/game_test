@@ -10,6 +10,9 @@ public:
 	void update();
 	void draw();
 
+	void ShotStart(float x, float y);
+	bool isExist()	const { return exist; }
+
 private:
 
 	int ShotImage[4];

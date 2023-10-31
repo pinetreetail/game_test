@@ -1,5 +1,7 @@
 #pragma once
 
+//#include "SceneMain.h"
+
 class Player
 {
 public:
@@ -18,11 +20,16 @@ private:
 
 	int PlayerImage1[5];
 	int PlayerImage2[5];
-	int stage;
+	int PlayerMotion;
+	int StopMotionNum;
 
 	float X;
 	float Y;
-
+	float PlayerSize;
 	float Speed;
+
+	//SceneMain scenemain;
+
+	int stage;
 };
 

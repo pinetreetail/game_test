@@ -1,5 +1,6 @@
 #include "Player.h"
 
+
 #include "DxLib.h"
 #include "Pad.h"
 
@@ -7,7 +8,10 @@ Player::Player()	:
 	X(250.0f),
 	Y(100.0f),
 	Speed(6.0f),
-	stage(0)
+	stage(0),
+	PlayerMotion(1),
+	StopMotionNum(0),
+	PlayerSize(40.0f)
 {
 	for (int i = 0; i < 5; i++)
 	{
@@ -22,6 +26,7 @@ Player::~Player()
 
 void Player::init()
 {
+	// Player機体の画像の読み込み
 	LoadDivGraph("image/playe/ship1.png", 5, 5, 1, 16, 24, PlayerImage1);
 	LoadDivGraph("image/playe/ship2.png", 5, 5, 1, 16, 24, PlayerImage2);
 	
@@ -44,8 +49,17 @@ void Player::update()
 	// パッドのアップデート処理
 	Pad::update();
 
-	
 
+	// Player機体の火？の動き
+	StopMotionNum++;
+	if (StopMotionNum > 5)
+	{
+		StopMotionNum = 0;
+		if (PlayerMotion == 1)	PlayerMotion = 0;
+		else PlayerMotion = 1;
+	}
+
+	// Player機体の移動
 	if (Pad::isPress(PAD_INPUT_LEFT))
 	{
 		// 左へ移動
@@ -66,9 +80,15 @@ void Player::update()
 		// 右へ移動
 		Y += Speed;
 	}
+	/*
+	if (Pad::isPress(PAD_INPUT_2))
+	{
+		scenemain.createShot(X, Y);
+	}
+	*/
+	
 
-
-	//	画面から出ない
+	// Player機体が画面から出たら戻す
 	if (X < 0.0f)	X = 0.0f;
 	if (X > 500.0f)	X = 500.0f;
 	if (Y < 0.0f)	Y = 0.0f;
@@ -81,5 +101,11 @@ void Player::update()
 void Player::draw()
 {
 	DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
-	DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, 40.0f, 0.0f, PlayerImage1[2], TRUE);
+
+
+	// Player機体の表示
+	if (PlayerMotion == 1)	DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
+	else  DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
+
+	
 }
