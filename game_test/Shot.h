@@ -1,4 +1,6 @@
 #pragma once
+#include "Vec2.h"
+
 class Shot
 {
 public:
@@ -10,7 +12,7 @@ public:
 	void update();
 	void draw();
 
-	void ShotStart(float x, float y);
+	void ShotStart(Vec2 pos);
 	bool isExist()	const { return exist; }
 
 private:
@@ -19,9 +21,10 @@ private:
 
 	bool exist;
 
-	float X;
-	float Y;
 	float ShotSpeed;
+
+	// •\Ž¦ˆÊ’u
+	Vec2	m_pos;
 
 };
 

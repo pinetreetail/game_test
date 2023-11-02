@@ -3,8 +3,6 @@
 #include "Player.h"
 #include "Shot.h"
 
-
-
 class SceneMain : public SceneBase
 {
 public:
@@ -19,13 +17,13 @@ public:
 	virtual SceneBase* update() override;
 	virtual void draw() override;
 
-	void createShot(float x,float y);
+	void createShot(Vec2 pos);
 
 private:
 
 	static constexpr int ShotMax = 50;
 
-	Player player;
-	Shot shot[ShotMax];
+	Player* player;
+	Shot* shot[ShotMax];
 
 };

@@ -1,12 +1,17 @@
 #pragma once
 
-//#include "SceneMain.h"
+#include "Vec2.h"
+
+
+class SceneMain;
 
 class Player
 {
 public:
 	Player();
 	virtual ~Player();
+
+	void setMain(SceneMain* pMain) { m_pMain = pMain; }
 
 
 	void init();
@@ -23,12 +28,13 @@ private:
 	int PlayerMotion;
 	int StopMotionNum;
 
-	float X;
-	float Y;
 	float PlayerSize;
 	float Speed;
 
-	//SceneMain scenemain;
+	// •\Ž¦ˆÊ’u
+	Vec2 m_pos;
+
+	SceneMain* m_pMain;
 
 	int stage;
 };

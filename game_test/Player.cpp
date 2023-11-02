@@ -1,12 +1,12 @@
 #include "Player.h"
-
+#include "SceneMain.h"
 
 #include "DxLib.h"
 #include "Pad.h"
 
 Player::Player()	:
-	X(250.0f),
-	Y(100.0f),
+	m_pMain(nullptr),
+	m_pos(),
 	Speed(6.0f),
 	stage(0),
 	PlayerMotion(1),
@@ -27,10 +27,14 @@ Player::~Player()
 void Player::init()
 {
 	// Player機体の画像の読み込み
-	LoadDivGraph("image/playe/ship1.png", 5, 5, 1, 16, 24, PlayerImage1);
-	LoadDivGraph("image/playe/ship2.png", 5, 5, 1, 16, 24, PlayerImage2);
+	LoadDivGraph("image/player/player1.png", 5, 5, 1, 16, 24, PlayerImage1);
+
+	LoadDivGraph("image/player/player2.png", 5, 5, 1, 16, 24, PlayerImage2);
 	
 	stage = LoadGraph("image/stage/background.png");
+
+	m_pos.x = 250.0f;
+	m_pos.y = 100.0f;
 }
 
 void Player::end()
@@ -63,36 +67,36 @@ void Player::update()
 	if (Pad::isPress(PAD_INPUT_LEFT))
 	{
 		// 左へ移動
-		X -= Speed;
+		m_pos.x -= Speed;
 	}
 	if (Pad::isPress(PAD_INPUT_RIGHT))
 	{
 		// 右へ移動
-		X += Speed;
+		m_pos.x += Speed;
 	}
 	if (Pad::isPress(PAD_INPUT_DOWN))
 	{
 		// 左へ移動
-		Y -= Speed;
+		m_pos.y -= Speed;
 	}
 	if (Pad::isPress(PAD_INPUT_UP))
 	{
 		// 右へ移動
-		Y += Speed;
+		m_pos.y += Speed;
 	}
-	/*
+	
 	if (Pad::isPress(PAD_INPUT_2))
 	{
-		scenemain.createShot(X, Y);
+		m_pMain->createShot(m_pos);
 	}
-	*/
+	
 	
 
 	// Player機体が画面から出たら戻す
-	if (X < 0.0f)	X = 0.0f;
-	if (X > 500.0f)	X = 500.0f;
-	if (Y < 0.0f)	Y = 0.0f;
-	if (Y > 800.0f)	Y = 800.0f;
+	if (m_pos.x < 0.0f)	m_pos.x = 0.0f;
+	if (m_pos.x > 500.0f)	m_pos.x = 500.0f;
+	if (m_pos.y < 0.0f)	m_pos.y = 0.0f;
+	if (m_pos.y > 800.0f)	m_pos.y = 800.0f;
 
 
 	
@@ -104,8 +108,8 @@ void Player::draw()
 
 
 	// Player機体の表示
-	if (PlayerMotion == 1)	DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
-	else  DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
+	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
+	else  DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
 
 	
 }

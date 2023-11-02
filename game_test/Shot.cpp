@@ -1,10 +1,9 @@
 #include "Shot.h"
-
+#include "game.h"
 #include "DxLib.h"
 
 Shot::Shot()	:
-	X(0.0f),
-	Y(0.0f),
+	m_pos(),
 	exist(false),
 	ShotSpeed(10.0f)
 {
@@ -35,9 +34,9 @@ void Shot::update()
 {
 	if (exist = true)
 	{
-		Y -= ShotSpeed;
+		m_pos.y -= ShotSpeed;
 
-		if (Y < 800.0f)
+		if (m_pos.y < Game::kScreenHeight)
 		{
 			exist = false;
 		}
@@ -49,15 +48,13 @@ void Shot::draw()
 {
 	if (exist == true)
 	{
-		DrawBillboard3D(VGet(X, Y, 100.0f), 0.5f, 0.5f, 30.0f, 0.0f, ShotImage[2], true);
+		DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, 30.0f, 0.0f, ShotImage[2], true);
 	}
 }
 
-void Shot::ShotStart(float x, float y)
+void Shot::ShotStart(Vec2 pos)
 {
 	exist = true;
-
-	X = x;
-	Y = y;
+	m_pos = pos;
 }
 

@@ -16,23 +16,23 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-	player.init();
+	player->init();
 
 
 	for (auto& shot : shot)
 	{
-		shot.init();
+		shot->init();
 	}
 	
 }
 
 void SceneMain::end()
 {
-	player.end();
+	player->end();
 
 	for (auto& shot : shot)
 	{
-		shot.end();
+		shot->end();
 	}
 }
 
@@ -46,11 +46,11 @@ SceneBase* SceneMain::update()
 		return (new SceneTitle);
 	}
 
-	player.update();
+	player->update();
 
 	for (auto& shot : shot)
 	{
-		shot.update();
+		shot->update();
 	}
 	
 
@@ -62,23 +62,23 @@ SceneBase* SceneMain::update()
 
 void SceneMain::draw()
 {
-	DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
+	//DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
 
-	player.draw();
+	player->draw();
 	for (auto& shot : shot)
 	{
-		shot.draw();
+		shot->draw();
 	}
 	
 }
 
-void SceneMain::createShot(float x, float y)
+void SceneMain::createShot(Vec2 pos)
 {
 	for (auto& shot : shot)
 	{
-		if (shot.isExist() == false)
+		if (shot->isExist() == false)
 		{
-			shot.ShotStart(x, y);
+			shot->ShotStart(pos);
 		}
 	}
 }
