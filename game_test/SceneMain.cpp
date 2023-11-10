@@ -2,21 +2,25 @@
 
 #include "SceneMain.h"
 #include "SceneTitle.h"
-
+#include "Player.h"
 
 #include "Pad.h"
 
-SceneMain::SceneMain()
+SceneMain::SceneMain()	:
+	m_pPlayer(nullptr)
 {
+	m_pPlayer = new Player;
 }
 
 SceneMain::~SceneMain()
 {
+	m_pPlayer = nullptr;
+	delete m_pPlayer;
 }
 
 void SceneMain::init()
 {
-	player->init();
+	m_pPlayer->init();
 
 
 	for (auto& shot : shot)
@@ -28,7 +32,7 @@ void SceneMain::init()
 
 void SceneMain::end()
 {
-	player->end();
+	m_pPlayer->end();
 
 	for (auto& shot : shot)
 	{
@@ -46,7 +50,7 @@ SceneBase* SceneMain::update()
 		return (new SceneTitle);
 	}
 
-	player->update();
+	m_pPlayer->update();
 
 	for (auto& shot : shot)
 	{
@@ -64,7 +68,7 @@ void SceneMain::draw()
 {
 	//DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
 
-	player->draw();
+	m_pPlayer->draw();
 	for (auto& shot : shot)
 	{
 		shot->draw();

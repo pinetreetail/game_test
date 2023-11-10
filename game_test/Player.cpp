@@ -13,6 +13,8 @@ Player::Player()	:
 	StopMotionNum(0),
 	PlayerSize(40.0f)
 {
+	m_pMain = new SceneMain;
+
 	for (int i = 0; i < 5; i++)
 	{
 		PlayerImage1[i] = 0;
@@ -22,6 +24,8 @@ Player::Player()	:
 
 Player::~Player()
 {
+	m_pMain = nullptr;
+	delete m_pMain;
 }
 
 void Player::init()
@@ -47,6 +51,7 @@ void Player::end()
 
 	DeleteGraph(stage);
 }
+
 
 void Player::update()
 {

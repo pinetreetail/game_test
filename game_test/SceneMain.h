@@ -1,7 +1,9 @@
 #pragma once
 #include "SceneBase.h"
-#include "Player.h"
+
 #include "Shot.h"
+
+class Player;
 
 class SceneMain : public SceneBase
 {
@@ -23,7 +25,7 @@ private:
 
 	static constexpr int ShotMax = 50;
 
-	Player* player;
+	Player* m_pPlayer;
 	Shot* shot[ShotMax];
 
 };

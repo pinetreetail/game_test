@@ -11,8 +11,6 @@ public:
 	Player();
 	virtual ~Player();
 
-	void setMain(SceneMain* pMain) { m_pMain = pMain; }
-
 
 	void init();
 	void end();
