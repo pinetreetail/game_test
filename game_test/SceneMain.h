@@ -1,9 +1,11 @@
 #pragma once
 #include "SceneBase.h"
+#include "Vec2.h"
 
-#include "Shot.h"
+
 
 class Player;
+class ShotControl;
 
 class SceneMain : public SceneBase
 {
@@ -19,13 +21,13 @@ public:
 	virtual SceneBase* update() override;
 	virtual void draw() override;
 
-	void createShot(Vec2 pos);
+	
 
 private:
 
 	static constexpr int ShotMax = 50;
 
 	Player* m_pPlayer;
-	Shot* shot[ShotMax];
+	ShotControl* m_pShotControl;
 
 };

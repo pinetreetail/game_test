@@ -3,7 +3,7 @@
 #include "Vec2.h"
 
 
-class SceneMain;
+class ShotControl;
 
 class Player
 {
@@ -32,7 +32,7 @@ private:
 	// •\Ž¦ˆÊ’u
 	Vec2 m_pos;
 
-	SceneMain* m_pMain;
+	ShotControl* m_pShotControl;
 
 	int stage;
 };

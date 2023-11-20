@@ -36,7 +36,7 @@ void Shot::update()
 	{
 		m_pos.y -= ShotSpeed;
 
-		if (m_pos.y < Game::kScreenHeight)
+		if (m_pos.y < 0)
 		{
 			exist = false;
 		}

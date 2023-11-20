@@ -147,6 +147,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Shot.cpp" />
+    <ClCompile Include="ShotControl.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Shot.h" />
+    <ClInclude Include="ShotControl.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>

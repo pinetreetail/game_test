@@ -1,11 +1,10 @@
 #include "Player.h"
-#include "SceneMain.h"
-
+#include "ShotControl.h"
 #include "DxLib.h"
 #include "Pad.h"
 
 Player::Player()	:
-	m_pMain(nullptr),
+	m_pShotControl(nullptr),
 	m_pos(),
 	Speed(6.0f),
 	stage(0),
@@ -13,7 +12,7 @@ Player::Player()	:
 	StopMotionNum(0),
 	PlayerSize(40.0f)
 {
-	m_pMain = new SceneMain;
+	m_pShotControl = new ShotControl;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -24,8 +23,8 @@ Player::Player()	:
 
 Player::~Player()
 {
-	m_pMain = nullptr;
-	delete m_pMain;
+	m_pShotControl = nullptr;
+	delete m_pShotControl;
 }
 
 void Player::init()
@@ -89,11 +88,11 @@ void Player::update()
 		// âEÇ÷à⁄ìÆ
 		m_pos.y += Speed;
 	}
-	
 	if (Pad::isPress(PAD_INPUT_2))
 	{
-		m_pMain->createShot(m_pos);
+		m_pShotControl->createShot(m_pos);
 	}
+	
 	
 	
 
@@ -116,5 +115,8 @@ void Player::draw()
 	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
 	else  DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
 
-	
+	if (Pad::isPress(PAD_INPUT_2))
+	{
+		DrawString(0, 0, "ÉÅÉCÉìâÊñ ", GetColor(255, 255, 255));
+	}
 }
