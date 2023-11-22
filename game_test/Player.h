@@ -26,6 +26,9 @@ private:
 	int PlayerMotion;
 	int StopMotionNum;
 
+	int ShotImage[4];	//
+
+
 	float PlayerSize;
 	float Speed;
 

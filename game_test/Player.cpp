@@ -19,6 +19,12 @@ Player::Player()	:
 		PlayerImage1[i] = 0;
 		PlayerImage2[i] = 0;
 	}
+
+
+	for (int i = 0; i < 4; i++)
+	{
+		ShotImage[i] = 0;
+	}		//
 }
 
 Player::~Player()
@@ -35,6 +41,10 @@ void Player::init()
 	LoadDivGraph("image/player/player2.png", 5, 5, 1, 16, 24, PlayerImage2);
 	
 	stage = LoadGraph("image/stage/background.png");
+
+
+	LoadDivGraph("image/shot/laser-bolts.png", 4, 2, 2, 16, 16, ShotImage);	//
+
 
 	m_pos.x = 250.0f;
 	m_pos.y = 100.0f;
@@ -96,7 +106,7 @@ void Player::update()
 	
 	
 
-	// Player機体が画面から出たら戻す
+	// Player機体が画面から出たら戻す	
 	if (m_pos.x < 0.0f)	m_pos.x = 0.0f;
 	if (m_pos.x > 500.0f)	m_pos.x = 500.0f;
 	if (m_pos.y < 0.0f)	m_pos.y = 0.0f;
@@ -108,8 +118,8 @@ void Player::update()
 
 void Player::draw()
 {
-	DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
-
+	//DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
+	//DrawBillboard3D(VGet(0, 0, 100.0f), 0.5f, 0.5f, 60.0f, 0.0f, ShotImage[2], TRUE);
 
 	// Player機体の表示
 	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);

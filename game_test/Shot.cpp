@@ -32,14 +32,14 @@ void Shot::end()
 
 void Shot::update()
 {
-	if (exist = true)
+	if (exist == true)
 	{
 		m_pos.y -= ShotSpeed;
 
-		if (m_pos.y < 0)
+		/*if (m_pos.y < 0)
 		{
 			exist = false;
-		}
+		}*/
 	}
 
 }
