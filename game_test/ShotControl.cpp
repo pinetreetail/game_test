@@ -1,6 +1,8 @@
 #include "ShotControl.h"
 
-ShotControl::ShotControl()
+ShotControl::ShotControl()	:
+	stopmax(10),
+	stopnum(0)
 {
 }
 
@@ -31,6 +33,9 @@ void ShotControl::update()
 	{
 		shot.update();
 	}
+
+	stopnum++;
+	if (stopnum > stopmax) stopnum = stopmax;
 }
 
 void ShotControl::draw()
@@ -46,9 +51,10 @@ void ShotControl::createShot(Vec2 pos)
 
 	for (auto& shot : shot)
 	{
-		if (shot.isExist() == false)
+		if (shot.isExist() == false && stopnum == stopmax)
 		{
 			shot.ShotStart(pos);
+			stopnum = 0;
 		}
 	}
 }

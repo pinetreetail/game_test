@@ -121,12 +121,15 @@ void Player::draw()
 	//DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
 	//DrawBillboard3D(VGet(0, 0, 100.0f), 0.5f, 0.5f, 60.0f, 0.0f, ShotImage[2], TRUE);
 
+	DrawFormatString(0, 0, GetColor(255, 255, 255), "player X %f", m_pos.x);
+	DrawFormatString(0, 25, GetColor(255, 255, 255), "player Y %f", m_pos.y);
+
 	// Playerã@ëÃÇÃï\é¶
 	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
 	else  DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
 
-	if (Pad::isPress(PAD_INPUT_2))
+	/*if (Pad::isPress(PAD_INPUT_2))
 	{
-		DrawString(0, 0, "ÉÅÉCÉìâÊñ ", GetColor(255, 255, 255));
-	}
+		
+	}*/
 }

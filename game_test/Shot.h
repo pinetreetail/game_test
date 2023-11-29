@@ -19,9 +19,12 @@ private:
 
 	int ShotImage[4];
 
+
 	bool exist;
 
+	float ShotSaiz;
 	float ShotSpeed;
+	
 
 	// •\Ž¦ˆÊ’u
 	Vec2	m_pos;

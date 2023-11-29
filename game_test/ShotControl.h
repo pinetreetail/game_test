@@ -20,6 +20,9 @@ private:
 	static constexpr int ShotMax = 50;
 	Shot shot[ShotMax];
 
+	const int stopmax;
+	int stopnum;
+
 	Vec2	m_pos;
 };
 
