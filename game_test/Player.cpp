@@ -10,7 +10,9 @@ Player::Player()	:
 	stage(0),
 	PlayerMotion(1),
 	StopMotionNum(0),
-	PlayerSize(40.0f)
+	PlayerSize(40.0f),
+	stopmax(60),
+	stopnum(0)
 {
 	m_pShotControl = new ShotControl;
 
@@ -98,9 +100,16 @@ void Player::update()
 		// ‰E‚ÖˆÚ“®
 		m_pos.y += Speed;
 	}
+
+
+	if (stopnum < stopmax)	stopnum++;
 	if (Pad::isPress(PAD_INPUT_2))
 	{
-		m_pShotControl->createShot(m_pos);
+		if (stopnum == stopmax)
+		{
+			m_pShotControl->createShot(m_pos);
+			stopnum = 0;
+		}
 	}
 	
 	
@@ -123,6 +132,7 @@ void Player::draw()
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "player X %f", m_pos.x);
 	DrawFormatString(0, 25, GetColor(255, 255, 255), "player Y %f", m_pos.y);
+	DrawFormatString(0, 50, GetColor(255, 255, 255), " %d", stopnum);
 
 	// Player‹@‘Ì‚Ì•\Ž¦
 	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);

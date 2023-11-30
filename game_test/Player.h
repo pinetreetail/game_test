@@ -32,6 +32,9 @@ private:
 	float PlayerSize;
 	float Speed;
 
+	const int stopmax;
+	int stopnum;
+
 	// •\Ž¦ˆÊ’u
 	Vec2 m_pos;
 

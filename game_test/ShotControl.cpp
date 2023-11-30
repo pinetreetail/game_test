@@ -1,8 +1,8 @@
 #include "ShotControl.h"
 
-ShotControl::ShotControl()	:
-	stopmax(10),
-	stopnum(0)
+#include "DxLib.h"
+
+ShotControl::ShotControl()	
 {
 }
 
@@ -34,12 +34,14 @@ void ShotControl::update()
 		shot.update();
 	}
 
-	stopnum++;
-	if (stopnum > stopmax) stopnum = stopmax;
+	
+	
 }
 
 void ShotControl::draw()
 {
+	
+
 	for (auto& shot : shot)
 	{
 		shot.draw();
@@ -48,13 +50,20 @@ void ShotControl::draw()
 
 void ShotControl::createShot(Vec2 pos)
 {
+	for (auto& shot : shot)
+	{
+		if (shot.isExist() == false)	
+		{
+			shot.ShotStart(pos);
+			break;
+		}
+	}
 
 	for (auto& shot : shot)
 	{
-		if (shot.isExist() == false && stopnum == stopmax)
+		if (shot.isExist() == true)
 		{
-			shot.ShotStart(pos);
-			stopnum = 0;
+			DrawFormatString(0, 75, GetColor(255, 255, 255), "•\Ž¦‚µ‚Ü‚·");
 		}
 	}
 }

@@ -36,7 +36,7 @@ void Shot::update()
 	if (exist == true)
 	{
 		m_pos.y -= ShotSpeed;
-		DrawString(0, 0, "ƒƒCƒ“‰æ–Ê", GetColor(255, 255, 255));
+		
 		if (m_pos.y > Game::kScreenHeight + ShotSaiz)
 		{
 			exist = false;
@@ -47,6 +47,8 @@ void Shot::update()
 
 void Shot::draw()
 {
+
+
 	if (exist == true)
 	{
 		DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, ShotSaiz, 0.0f, ShotImage[2], true);
