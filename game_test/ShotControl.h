@@ -1,5 +1,5 @@
 #pragma once
-#include "Vec2.h"
+#include "DxLib.h"
 
 #include "Shot.h"
 
@@ -14,14 +14,14 @@ public:
 	void update();
 	void draw();
 
-	void createShot(Vec2 pos);
+	void createShot(const float x, const float y);
 
 private:
-	static constexpr int ShotMax = 50;
-	Shot shot[ShotMax];
+	
+	Shot shot;
 
 	
 
-	Vec2	m_pos;
+	VECTOR	m_pos;
 };
 

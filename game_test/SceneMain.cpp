@@ -6,35 +6,31 @@
 #include "ShotControl.h"
 #include "Pad.h"
 
-SceneMain::SceneMain()	:
-	m_pPlayer(nullptr),
-	m_pShotControl(nullptr)
+SceneMain::SceneMain()	
 {
-	m_pPlayer = new Player;
-	m_pShotControl = new ShotControl;
 }
 
 SceneMain::~SceneMain()
 {
-	m_pPlayer = nullptr;
-	delete m_pPlayer;
-	m_pShotControl = nullptr;
-	delete m_pShotControl;
+	
 }
 
 void SceneMain::init()
 {
-	m_pPlayer->init();
-	m_pShotControl->init();
+	player.init();
+	shotcontrol.init();
 
 	
-	
+	// Near, Far クリップの距離を設定
+	SetCameraNearFar(0.1f, 1000.0f);
+
+	SetCameraPositionAndAngle(VGet(0.0f, 0.0f, -100.0f), 0.0f, 0.0f, 0.0f);
 }
 
 void SceneMain::end()
 {
-	m_pPlayer->end();
-	m_pShotControl->end();
+	player.end();
+	shotcontrol.end();
 	
 }
 
@@ -48,8 +44,8 @@ SceneBase* SceneMain::update()
 		return (new SceneTitle);
 	}
 
-	m_pPlayer->update();
-	m_pShotControl->update();
+	player.update();
+	shotcontrol.update();
 	
 	
 
@@ -63,8 +59,8 @@ void SceneMain::draw()
 {
 	//DrawString(0, 0, "メイン画面", GetColor(255, 255, 255));
 
-	m_pPlayer->draw();
-	m_pShotControl->draw();
+	player.draw();
+	shotcontrol.draw();
 	
 }
 

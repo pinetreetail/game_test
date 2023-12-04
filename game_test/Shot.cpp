@@ -4,13 +4,18 @@
 
 Shot::Shot()	:
 	m_pos(),
-	exist(false),
-	ShotSpeed(10.0f),
-	ShotSaiz(30.0f)
+	ShotSpeed(1.5f),
+	ShotSaiz(3.0f)
 {
 	for (int i = 0; i < 4; i++)
 	{
 		ShotImage[i] = 0;
+	}
+	for (int i = 0; i < ShotMax; i++)
+	{
+		shotX[i] = 0.0f;
+		shotY[i] = 0.0f;
+		exist[i] = false;
 	}
 }
 
@@ -21,6 +26,10 @@ Shot::~Shot()
 void Shot::init()
 {
 	LoadDivGraph("image/shot/laser-bolts.png", 4, 2, 2, 16, 16, ShotImage);
+
+	m_pos.x = 0.0f;
+	m_pos.y = 0.0f;
+	m_pos.z = 0.0f;
 }
 
 void Shot::end()
@@ -33,31 +42,45 @@ void Shot::end()
 
 void Shot::update()
 {
-	if (exist == true)
+	for (int i = 0; i < ShotMax; i++)
 	{
-		m_pos.y -= ShotSpeed;
-		
-		if (m_pos.y > Game::kScreenHeight + ShotSaiz)
+		if (exist[i] = true)
 		{
-			exist = false;
+			m_pos.y -= ShotSpeed;
+
+			if (m_pos.y > 54.0f + ShotSaiz)
+			{
+				exist[i] = false;
+				shotX[i] = 0.0f;
+				shotY[i] = 0.0f;
+			}
 		}
 	}
+	
 
 }
 
 void Shot::draw()
 {
-
-
-	if (exist == true)
+	for (int i = 0; i < ShotMax; i++)
 	{
-		DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, ShotSaiz, 0.0f, ShotImage[2], true);
+		if (exist[i] = true)
+		{
+			DrawBillboard3D(VGet(shotX[i], shotY[i], 0.0f), 0.5f, 0.5f, ShotSaiz, 0.0f, ShotImage[2], true);
+		}
 	}
+	
 }
 
-void Shot::ShotStart(Vec2 pos)
+void Shot::ShotStart(const float x, const float y)
 {
-	exist = true;
-	m_pos = pos;
+	exist[i] = true;
+	shotX[i] = 0.0f;
+	shotY[i] = 0.0f;
+}
+
+bool Shot::isExist()
+{
+	return false;
 }
 

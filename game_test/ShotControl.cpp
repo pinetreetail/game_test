@@ -12,27 +12,24 @@ ShotControl::~ShotControl()
 
 void ShotControl::init()
 {
-	for (auto& shot : shot)
-	{
-		shot.init();
-	}
+	shot.init();
+	
 }
 
 void ShotControl::end()
 {
-	for (auto& shot : shot)
-	{
-		shot.end();
-	}
+	shot.end();
+	
 }
 
 void ShotControl::update()
 {
-
-	for (auto& shot : shot)
+	if (shot.isExist() == true)
 	{
 		shot.update();
 	}
+
+	
 
 	
 	
@@ -40,30 +37,17 @@ void ShotControl::update()
 
 void ShotControl::draw()
 {
+	shot.draw();
+	//DrawFormatString(0, 75, GetColor(255, 255, 255), "•\Ž¦‚µ‚Ü‚·");
 	
-
-	for (auto& shot : shot)
-	{
-		shot.draw();
-	}
 }
 
-void ShotControl::createShot(Vec2 pos)
+void ShotControl::createShot(const float x, const float y)
 {
-	for (auto& shot : shot)
+	if (shot.isExist() == false)	
 	{
-		if (shot.isExist() == false)	
-		{
-			shot.ShotStart(pos);
-			break;
-		}
+		shot.ShotStart(x, y);
+		
 	}
-
-	for (auto& shot : shot)
-	{
-		if (shot.isExist() == true)
-		{
-			DrawFormatString(0, 75, GetColor(255, 255, 255), "•\Ž¦‚µ‚Ü‚·");
-		}
-	}
+	
 }

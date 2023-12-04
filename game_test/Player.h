@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Vec2.h"
+#include "DxLib.h"
 
-
-class ShotControl;
+#include "ShotControl.h"
 
 class Player
 {
@@ -30,15 +29,13 @@ private:
 
 
 	float PlayerSize;
-	float Speed;
 
-	const int stopmax;
 	int stopnum;
 
 	// •\Ž¦ˆÊ’u
-	Vec2 m_pos;
+	VECTOR m_pos;
 
-	ShotControl* m_pShotControl;
+	ShotControl shotcontrol;
 
 	int stage;
 };

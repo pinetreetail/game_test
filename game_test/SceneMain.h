@@ -2,10 +2,8 @@
 #include "SceneBase.h"
 #include "Vec2.h"
 
-
-
-class Player;
-class ShotControl;
+#include "Player.h"
+#include "ShotControl.h"
 
 class SceneMain : public SceneBase
 {
@@ -27,7 +25,7 @@ private:
 
 	static constexpr int ShotMax = 50;
 
-	Player* m_pPlayer;
-	ShotControl* m_pShotControl;
+	Player player;
+	ShotControl shotcontrol;
 
 };

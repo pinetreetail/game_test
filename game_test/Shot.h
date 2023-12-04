@@ -1,5 +1,5 @@
 #pragma once
-#include "Vec2.h"
+#include "DxLib.h"
 
 class Shot
 {
@@ -12,22 +12,25 @@ public:
 	void update();
 	void draw();
 
-	void ShotStart(Vec2 pos);
-	bool isExist()	const { return exist; }
+	void ShotStart(const float x, const float y);
+	bool isExist();
 
 private:
 
 	int ShotImage[4];
 
+	static constexpr int ShotMax = 50;
 
-	bool exist;
+	float shotX[ShotMax];
+	float shotY[ShotMax];
+	bool exist[ShotMax];
 
 	float ShotSaiz;
 	float ShotSpeed;
 	
 
 	// •\Ž¦ˆÊ’u
-	Vec2	m_pos;
+	VECTOR	m_pos;
 
 };
 

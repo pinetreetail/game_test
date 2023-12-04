@@ -3,18 +3,23 @@
 #include "DxLib.h"
 #include "Pad.h"
 
+namespace
+{
+	constexpr float Speed = 0.75f;
+	constexpr int stopmax = 60;
+
+	float playerX = 0.0f;
+	float playerY = 0.0f;
+}
+
 Player::Player()	:
-	m_pShotControl(nullptr),
 	m_pos(),
-	Speed(6.0f),
 	stage(0),
 	PlayerMotion(1),
 	StopMotionNum(0),
-	PlayerSize(40.0f),
-	stopmax(60),
+	PlayerSize(5.0f),
 	stopnum(0)
 {
-	m_pShotControl = new ShotControl;
 
 	for (int i = 0; i < 5; i++)
 	{
@@ -31,8 +36,6 @@ Player::Player()	:
 
 Player::~Player()
 {
-	m_pShotControl = nullptr;
-	delete m_pShotControl;
 }
 
 void Player::init()
@@ -42,14 +45,14 @@ void Player::init()
 
 	LoadDivGraph("image/player/player2.png", 5, 5, 1, 16, 24, PlayerImage2);
 	
+
 	stage = LoadGraph("image/stage/background.png");
-
-
 	LoadDivGraph("image/shot/laser-bolts.png", 4, 2, 2, 16, 16, ShotImage);	//
 
 
-	m_pos.x = 250.0f;
-	m_pos.y = 100.0f;
+	m_pos.x = 0.0f;
+	m_pos.y = 0.0f;
+	m_pos.z = 0.0f;
 }
 
 void Player::end()
@@ -107,7 +110,10 @@ void Player::update()
 	{
 		if (stopnum == stopmax)
 		{
-			m_pShotControl->createShot(m_pos);
+			playerX = m_pos.x;
+			playerY = m_pos.y;
+
+			shotcontrol.createShot(playerX, playerY);
 			stopnum = 0;
 		}
 	}
@@ -116,10 +122,10 @@ void Player::update()
 	
 
 	// Player機体が画面から出たら戻す	
-	if (m_pos.x < 0.0f)	m_pos.x = 0.0f;
-	if (m_pos.x > 500.0f)	m_pos.x = 500.0f;
-	if (m_pos.y < 0.0f)	m_pos.y = 0.0f;
-	if (m_pos.y > 800.0f)	m_pos.y = 800.0f;
+	if (m_pos.x < -33.0f)	m_pos.x = -33.0f;
+	if (m_pos.x > 33.0f)	m_pos.x = 33.0f;
+	if (m_pos.y < -54.0f)	m_pos.y = -54.0f;
+	if (m_pos.y > 54.0f)	m_pos.y = 54.0f;
 
 
 	
@@ -127,7 +133,7 @@ void Player::update()
 
 void Player::draw()
 {
-	//DrawBillboard3D(VGet(250.0f, 400.0f, 200.0f), 0.5f, 0.5f, 830.0f, 0.0f, stage, TRUE);
+	//DrawBillboard3D(VGet(0.0f, 0.0f, 100.0f), 0.5f, 0.5f, 200.0f, 0.0f, stage, TRUE);
 	//DrawBillboard3D(VGet(0, 0, 100.0f), 0.5f, 0.5f, 60.0f, 0.0f, ShotImage[2], TRUE);
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "player X %f", m_pos.x);
@@ -135,8 +141,8 @@ void Player::draw()
 	DrawFormatString(0, 50, GetColor(255, 255, 255), " %d", stopnum);
 
 	// Player機体の表示
-	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
-	else  DrawBillboard3D(VGet(m_pos.x, m_pos.y, 100.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
+	if (PlayerMotion == 1)	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 0.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage1[2], TRUE);
+	else  DrawBillboard3D(VGet(m_pos.x, m_pos.y, 0.0f), 0.5f, 0.5f, PlayerSize, 0.0f, PlayerImage2[2], TRUE);
 
 	/*if (Pad::isPress(PAD_INPUT_2))
 	{
