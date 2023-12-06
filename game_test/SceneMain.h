@@ -23,8 +23,6 @@ public:
 
 private:
 
-	static constexpr int ShotMax = 50;
-
 	Player player;
 	ShotControl shotcontrol;
 

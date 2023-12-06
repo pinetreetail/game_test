@@ -14,14 +14,14 @@ public:
 	void update();
 	void draw();
 
-	void createShot(const float x, const float y);
+	void createShot(VECTOR pos);
+
+private:
+
+	static constexpr int ShotMax = 50;
 
 private:
 	
-	Shot shot;
-
-	
-
-	VECTOR	m_pos;
+	Shot shot[ShotMax];
 };
 

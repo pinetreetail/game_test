@@ -2,7 +2,15 @@
 #include "game.h"
 #include "DxLib.h"
 
+
+namespace
+{
+	constexpr float Speed = 1.5f;
+}
+
+
 Shot::Shot()	:
+	exist(false),
 	m_pos(),
 	ShotSpeed(1.5f),
 	ShotSaiz(3.0f)
@@ -11,12 +19,12 @@ Shot::Shot()	:
 	{
 		ShotImage[i] = 0;
 	}
-	for (int i = 0; i < ShotMax; i++)
+	/*for (int i = 0; i < ShotMax; i++)
 	{
 		shotX[i] = 0.0f;
 		shotY[i] = 0.0f;
 		exist[i] = false;
-	}
+	}*/
 }
 
 Shot::~Shot()
@@ -42,45 +50,27 @@ void Shot::end()
 
 void Shot::update()
 {
-	for (int i = 0; i < ShotMax; i++)
-	{
-		if (exist[i] = true)
-		{
-			m_pos.y -= ShotSpeed;
+	if (!exist) return;
 
-			if (m_pos.y > 54.0f + ShotSaiz)
-			{
-				exist[i] = false;
-				shotX[i] = 0.0f;
-				shotY[i] = 0.0f;
-			}
-		}
+	m_pos.y += Speed;
+	if (m_pos.y > 54.0f + ShotSaiz)
+	{
+		exist = false;
 	}
-	
 
 }
 
 void Shot::draw()
 {
-	for (int i = 0; i < ShotMax; i++)
-	{
-		if (exist[i] = true)
-		{
-			DrawBillboard3D(VGet(shotX[i], shotY[i], 0.0f), 0.5f, 0.5f, ShotSaiz, 0.0f, ShotImage[2], true);
-		}
-	}
+	if (!exist) return;
+
+	DrawBillboard3D(VGet(m_pos.x, m_pos.y, 0.0f), 0.5f, 0.5f, ShotSaiz, 0.0f, ShotImage[2], true);
 	
 }
 
-void Shot::ShotStart(const float x, const float y)
+void Shot::ShotStart(VECTOR pos)
 {
-	exist[i] = true;
-	shotX[i] = 0.0f;
-	shotY[i] = 0.0f;
-}
-
-bool Shot::isExist()
-{
-	return false;
+	exist = true;
+	m_pos = pos;
 }
 

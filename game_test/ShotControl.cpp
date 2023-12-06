@@ -12,42 +12,53 @@ ShotControl::~ShotControl()
 
 void ShotControl::init()
 {
-	shot.init();
-	
+	for (auto& shot : shot)
+	{
+		shot.init();
+
+	}
 }
 
 void ShotControl::end()
 {
-	shot.end();
+	for (auto& shot : shot)
+	{
+		shot.end();
+	}
 	
 }
 
 void ShotControl::update()
 {
-	if (shot.isExist() == true)
+	for (auto& shot : shot)
 	{
 		shot.update();
 	}
-
-	
-
 	
 	
 }
 
 void ShotControl::draw()
 {
-	shot.draw();
+	for (auto& shot : shot)
+	{
+		shot.draw();
+	}
+	
 	//DrawFormatString(0, 75, GetColor(255, 255, 255), "•\Ž¦‚µ‚Ü‚·");
 	
 }
 
-void ShotControl::createShot(const float x, const float y)
+void ShotControl::createShot(VECTOR pos)
 {
-	if (shot.isExist() == false)	
+	for (auto& shot : shot)
 	{
-		shot.ShotStart(x, y);
+		if (shot.isExist() == false)
+		{
+			shot.ShotStart(pos);
+
+			return;
+		}
 		
 	}
-	
 }

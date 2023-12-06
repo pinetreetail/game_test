@@ -17,6 +17,9 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
+
+	player.setShotControl();
+
 	player.init();
 	shotcontrol.init();
 

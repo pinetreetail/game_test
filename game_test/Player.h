@@ -4,12 +4,15 @@
 
 #include "ShotControl.h"
 
+class ShotControl;
+
 class Player
 {
 public:
 	Player();
 	virtual ~Player();
 
+	void setShotControl(ShotControl* pSControl) { m_pSControl = pSControl; }
 
 	void init();
 	void end();
@@ -35,7 +38,7 @@ private:
 	// •\Ž¦ˆÊ’u
 	VECTOR m_pos;
 
-	ShotControl shotcontrol;
+	ShotControl* m_pSControl;
 
 	int stage;
 };

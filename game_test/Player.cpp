@@ -13,6 +13,7 @@ namespace
 }
 
 Player::Player()	:
+	m_pSControl(nullptr),
 	m_pos(),
 	stage(0),
 	PlayerMotion(1),
@@ -110,10 +111,9 @@ void Player::update()
 	{
 		if (stopnum == stopmax)
 		{
-			playerX = m_pos.x;
-			playerY = m_pos.y;
+		
 
-			shotcontrol.createShot(playerX, playerY);
+			m_pSControl->createShot(m_pos);
 			stopnum = 0;
 		}
 	}
@@ -133,8 +133,8 @@ void Player::update()
 
 void Player::draw()
 {
-	//DrawBillboard3D(VGet(0.0f, 0.0f, 100.0f), 0.5f, 0.5f, 200.0f, 0.0f, stage, TRUE);
-	//DrawBillboard3D(VGet(0, 0, 100.0f), 0.5f, 0.5f, 60.0f, 0.0f, ShotImage[2], TRUE);
+	DrawBillboard3D(VGet(0.0f, 0.0f, 100.0f), 0.5f, 0.5f, 200.0f, 0.0f, stage, TRUE);
+	DrawBillboard3D(VGet(0, 0, 100.0f), 0.5f, 0.5f, 60.0f, 0.0f, ShotImage[2], TRUE);
 
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "player X %f", m_pos.x);
 	DrawFormatString(0, 25, GetColor(255, 255, 255), "player Y %f", m_pos.y);

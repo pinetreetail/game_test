@@ -12,18 +12,16 @@ public:
 	void update();
 	void draw();
 
-	void ShotStart(const float x, const float y);
-	bool isExist();
+	void ShotStart(VECTOR pos);
+	bool isExist() const { return exist; }
 
 private:
 
 	int ShotImage[4];
 
-	static constexpr int ShotMax = 50;
+	//static constexpr int ShotMax = 50;
 
-	float shotX[ShotMax];
-	float shotY[ShotMax];
-	bool exist[ShotMax];
+	bool exist;
 
 	float ShotSaiz;
 	float ShotSpeed;
